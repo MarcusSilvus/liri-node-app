@@ -9,13 +9,25 @@
 
 var fs = require("fs");
 
-
 var axios = require("axios");
 
 var liriCmd = process.argv[2];
 var movie = process.argv.slice(3).join("+");
 
-// OMDB Search
+// Concert-This Search
+if (liriCmd === "concert-this") {
+  axios.get("https://rest.bandsintown.com/artists/" + movie + "/events?app_id=codingbootcamp").then(
+    function (response) {
+      console.log("\n------------------");
+      console.log("\nTitle: " + response.data.Title);
+      
+    }
+  )
+}
+
+// Spotify-This-Song Search
+
+// Movie-This Search
 if (liriCmd === "movie-this") {
   axios.get("http://www.omdbapi.com/?t=" + movie + "&y=&apikey=trilogy").then(
     function (response) {
@@ -28,5 +40,7 @@ if (liriCmd === "movie-this") {
       // FIXES: Rotten tomatoes rating
       // "Ratings":[{"Source":"Rotten Tomatoes","Value":"82%"}
     }
-  );
+  )
 }
+
+// Do-What-It-Says Search
