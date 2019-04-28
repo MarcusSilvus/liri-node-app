@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/MarcusSilvus/liri-node-app/issues"
   },
-  "homepage": "https://github.com/MarcusSilvus/liri-node-app#readme"
+  "homepage": "https://github.com/MarcusSilvus/liri-node-app#readme",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
 }
