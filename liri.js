@@ -14,8 +14,12 @@ var fs = require("fs");
 // axios npm installed
 var axios = require("axios");
 
+// moment nom installed
+var moment = require('moment');
+
+
 var liriCmd = process.argv[2];
-var userSearch = process.argv.slice(3).join("+");
+var userSearch = process.argv.slice(3).join(" ");
 
 
 // Concert-This Search
@@ -25,16 +29,39 @@ var concertUrl = "https://rest.bandsintown.com/artists/" + userSearch + "/events
 if (liriCmd === "concert-this") {
   axios.get(concertUrl).then(
     function (response) {
+
+      var date = moment(response.data[4].datetime).format('L');
+
       console.log("\n------------------");
-      console.log("\nVenue: " + response.data[6].venue.name);
-      console.log("\nCity: " + response.data[6].venue.city);
-      console.log("\nState: " + response.data[6].venue.region);
+      console.log("\n" + userSearch + " show information:");
+      
+      console.log(
+        "\nEvent Date: " + date,
+        "\nVenue: " + response.data[6].venue.name,
+        "\nCity: " + response.data[6].venue.city,
+        "\nState: " + response.data[6].venue.region,
+        "\nCountry: " + response.data[6].venue.country);
       console.log("\n------------------\n");
     }
   )
 }
 
 // Spotify-This-Song Search
+
+var concertUrl = "https://rest.bandsintown.com/artists/" + userSearch + "/events?app_id=codingbootcamp";
+
+if (liriCmd === "spotify-this-song") {
+  axios.get(concertUrl).then(
+    function (response) {
+
+      console.log("\n------------------");
+      console.log();
+      
+      console.log();
+      console.log("\n------------------\n");
+    }
+  )
+}
 
 // Movie-This Search
 
