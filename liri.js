@@ -7,7 +7,10 @@ var keys = require("./keys.js");
 
 // js
 // spotify npm installed
-// var spotify = new Spotify(keys.spotify);
+var Spotify = require('node-spotify-api');
+var spotify = new Spotify(keys.spotify);
+
+
 
 var fs = require("fs");
 
@@ -34,7 +37,7 @@ if (liriCmd === "concert-this") {
 
       console.log("\n------------------");
       console.log("\n" + userSearch + " show information:");
-      
+
       console.log(
         "\nEvent Date: " + date,
         "\nVenue: " + response.data[6].venue.name,
@@ -48,20 +51,32 @@ if (liriCmd === "concert-this") {
 
 // Spotify-This-Song Search
 
-var concertUrl = "https://rest.bandsintown.com/artists/" + userSearch + "/events?app_id=codingbootcamp";
+// var spotify = new Spotify(keys.spotify);
 
 if (liriCmd === "spotify-this-song") {
-  axios.get(concertUrl).then(
-    function (response) {
+  
 
-      console.log("\n------------------");
-      console.log();
-      
-      console.log();
-      console.log("\n------------------\n");
+  spotify.search({ type: 'track', query: userSearch }, function (err, data) {
+    if (err) {
+      return console.log('Error occurred: ' + err);
     }
-  )
+
+    console.log(data.tracks);
+  });
+  //   axios.get().then(
+  //     function (response) {
+
+  //       console.log("\n------------------");
+  //       console.log();
+
+  //       console.log();
+  //       console.log("\n------------------\n");
+  //     }
+  //   )
+
 }
+
+
 
 // Movie-This Search
 
