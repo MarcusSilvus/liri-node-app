@@ -37,7 +37,7 @@ if (liriCmd === "concert-this") {
 
       for (i = 0; i < results.length; i++) {
 
-        console.log("\n------------------");
+        console.log("\n-------- Search Results --------");
         console.log("\n" + userSearch + " show information:");
 
         console.log(
@@ -46,7 +46,6 @@ if (liriCmd === "concert-this") {
           "\nCity: " + results[i].venue.city,
           "\nState: " + results[i].venue.region,
           "\nCountry: " + results[i].venue.country);
-        console.log("\n------------------\n");
       }
     }
   )
@@ -62,6 +61,11 @@ if (liriCmd === "spotify-this-song") {
     userSearch = "what's my name again";
   }
 
+  //varible that gets the artists names
+  var artistName = function(artist) {
+    return artist.name;
+  };
+
   spotify.search(
     {
       type: 'track',
@@ -75,18 +79,15 @@ if (liriCmd === "spotify-this-song") {
       var results = data.tracks.items;
 
       for (i = 0; i < results.length; i++) {
-        // console.log("\n------------------");
-        // console.log(
-        //   "\nArtist: " + results[i].artist,
-        //   "\nSong Title: " + results[i].name,
-        //   "\nLink to Song: " + results[i].preview_url,
-        //   "\nAlbum : " + results[i].album);
-        // console.log();
-        // console.log("\n------------------\n");
-
+        console.log("\n-------- Search Results --------");
+        console.log(
+          "\nArtist: " + results[i].artists.map(artistName),
+          "\nSong Title: " + results[i].name,
+          "\nLink to Song: " + results[i].preview_url,
+          "\nAlbum : " + results[i].album.name);
       }
 
-      console.log(data.tracks.items.artist);
+      //console.log(data.tracks.items.artist);
     });
 }
 
@@ -107,7 +108,7 @@ if (liriCmd === "movie-this") {
 
       var results = response.data
 
-      console.log("\n------------------");
+      console.log("\n-------- Search Results --------");
       console.log(
         "\nTitle: " + results.Title,
         "\nYear Released: " + results.Year,
@@ -117,7 +118,6 @@ if (liriCmd === "movie-this") {
         "\nLanguage(s): " + results.Language,
         "\nPlot: " + results.Plot,
         "\nStarring: " + results.Actors);
-      console.log("\n------------------\n");
     }
   )
 }
