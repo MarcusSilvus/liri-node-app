@@ -58,6 +58,9 @@ if (liriCmd === "concert-this") {
 
 if (liriCmd === "spotify-this-song") {
 
+  if (userSearch === undefined) {
+    userSearch = "what's my name again";
+  }
 
   spotify.search(
     {
@@ -70,39 +73,22 @@ if (liriCmd === "spotify-this-song") {
       }
 
       var results = data.tracks.items;
-      
+
       for (i = 0; i < results.length; i++) {
-        console.log("\n------------------");
-        console.log(
-          "\nArtist: " + results[i].artist,
-          "\nSong Title: " + results[i].title,
-          "\nLink to Song: " + results[i].url,
-          "\nAlbum : " + results[i].album);
-        console.log();
-        console.log("\n------------------\n");
+        // console.log("\n------------------");
+        // console.log(
+        //   "\nArtist: " + results[i].artist,
+        //   "\nSong Title: " + results[i].name,
+        //   "\nLink to Song: " + results[i].preview_url,
+        //   "\nAlbum : " + results[i].album);
+        // console.log();
+        // console.log("\n------------------\n");
 
       }
-      // console.log(data.tracks);
+
+      console.log(data.tracks.items.artist);
     });
-  // axios.get().then(
-  //   function (response) {
-
-  //     var results = response.data
-
-  //     console.log("\n------------------");
-  //     console.log(
-  //       "\nArtist: " + results.artist,
-  //       "\nSong Title: " + results.title,
-  //       "\nLink to Song: " + results.url,
-  //       "\nAlbum : " + results.album);
-  //     console.log();
-  //     console.log("\n------------------\n");
-  //   }
-  // )
-
 }
-
-
 
 // Movie-This Search
 
