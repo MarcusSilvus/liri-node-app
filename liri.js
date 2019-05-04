@@ -37,7 +37,7 @@ if (liriCmd === "concert-this") {
 
       for (i = 0; i < results.length; i++) {
 
-        console.log("\n-------- Search Results --------");
+        console.log("\n----------------");
         console.log("\n" + userSearch + " show information:");
 
         console.log(
@@ -53,16 +53,14 @@ if (liriCmd === "concert-this") {
 
 // Spotify-This-Song Search
 
-// var spotify = new Spotify(keys.spotify);
-
 if (liriCmd === "spotify-this-song") {
 
   if (userSearch === undefined) {
     userSearch = "what's my name again";
   }
 
-  //varible that gets the artists names
-  var artistName = function(artist) {
+  //varible that gets the artists' name
+  var artistName = function (artist) {
     return artist.name;
   };
 
@@ -85,9 +83,8 @@ if (liriCmd === "spotify-this-song") {
           "\nSong Title: " + results[i].name,
           "\nLink to Song: " + results[i].preview_url,
           "\nAlbum : " + results[i].album.name);
+        //console.log(data.tracks.items.artist);
       }
-
-      //console.log(data.tracks.items.artist);
     });
 }
 
@@ -98,7 +95,7 @@ if (liriCmd === "spotify-this-song") {
 if (liriCmd === "movie-this") {
 
   if (userSearch === undefined) {
-    userSearch = "mr nobody";
+    userSearch = "mr. nobody";
   }
 
   var movieUrl = "http://www.omdbapi.com/?t=" + userSearch + "&y=&apikey=trilogy";
@@ -123,3 +120,12 @@ if (liriCmd === "movie-this") {
 }
 
 // Do-What-It-Says Search
+
+if (liriCmd === "do-what-it-says") {
+  fs.readFile("random.txt", "utf8", function(error, data) {
+    console.log(data);
+
+    // Then split it by commas (to make it more readable)
+    var dataArr = data.split(", ");
+  });
+}
