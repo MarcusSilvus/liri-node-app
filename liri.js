@@ -33,18 +33,21 @@ if (liriCmd === "concert-this") {
   axios.get(concertUrl).then(
     function (response) {
 
-      var date = moment(response.data[4].datetime).format('L');
+      var results = response.data
 
-      console.log("\n------------------");
-      console.log("\n" + userSearch + " show information:");
+      for (i = 0; i < results.length; i++) {
 
-      console.log(
-        "\nEvent Date: " + date,
-        "\nVenue: " + response.data[6].venue.name,
-        "\nCity: " + response.data[6].venue.city,
-        "\nState: " + response.data[6].venue.region,
-        "\nCountry: " + response.data[6].venue.country);
-      console.log("\n------------------\n");
+        console.log("\n------------------");
+        console.log("\n" + userSearch + " show information:");
+
+        console.log(
+          "\nEvent Date: " + moment(response.data[i].datetime).format('L'),
+          "\nVenue: " + results[i].venue.name,
+          "\nCity: " + results[i].venue.city,
+          "\nState: " + results[i].venue.region,
+          "\nCountry: " + results[i].venue.country);
+        console.log("\n------------------\n");
+      }
     }
   )
 }
@@ -54,25 +57,48 @@ if (liriCmd === "concert-this") {
 // var spotify = new Spotify(keys.spotify);
 
 if (liriCmd === "spotify-this-song") {
-  
 
-  spotify.search({ type: 'track', query: userSearch }, function (err, data) {
-    if (err) {
-      return console.log('Error occurred: ' + err);
-    }
 
-    console.log(data.tracks);
-  });
-  //   axios.get().then(
-  //     function (response) {
+  spotify.search(
+    {
+      type: 'track',
+      query: userSearch
+    },
+    function (err, data) {
+      if (err) {
+        return console.log('Error occurred: ' + err);
+      }
 
-  //       console.log("\n------------------");
-  //       console.log();
+      var results = data.tracks.items;
+      
+      for (i = 0; i < results.length; i++) {
+        console.log("\n------------------");
+        console.log(
+          "\nArtist: " + results[i].artist,
+          "\nSong Title: " + results[i].title,
+          "\nLink to Song: " + results[i].url,
+          "\nAlbum : " + results[i].album);
+        console.log();
+        console.log("\n------------------\n");
 
-  //       console.log();
-  //       console.log("\n------------------\n");
-  //     }
-  //   )
+      }
+      // console.log(data.tracks);
+    });
+  // axios.get().then(
+  //   function (response) {
+
+  //     var results = response.data
+
+  //     console.log("\n------------------");
+  //     console.log(
+  //       "\nArtist: " + results.artist,
+  //       "\nSong Title: " + results.title,
+  //       "\nLink to Song: " + results.url,
+  //       "\nAlbum : " + results.album);
+  //     console.log();
+  //     console.log("\n------------------\n");
+  //   }
+  // )
 
 }
 
@@ -92,16 +118,19 @@ if (liriCmd === "movie-this") {
 
   axios.get(movieUrl).then(
     function (response) {
+
+      var results = response.data
+
       console.log("\n------------------");
       console.log(
-        "\nTitle: " + response.data.Title,
-        "\nYear Released: " + response.data.Year,
-        "\nIMDB Rating: " + response.data.imdbRating,
-        "\nRotten Tomatoes Rating: " + response.data.Ratings[1].Value,
-        "\nProduction Location(s): " + response.data.Country,
-        "\nLanguage(s): " + response.data.Language,
-        "\nPlot: " + response.data.Plot,
-        "\nStarring: " + response.data.Actors);
+        "\nTitle: " + results.Title,
+        "\nYear Released: " + results.Year,
+        "\nIMDB Rating: " + results.imdbRating,
+        "\nRotten Tomatoes Rating: " + results.Ratings[1].Value,
+        "\nProduction Location(s): " + results.Country,
+        "\nLanguage(s): " + results.Language,
+        "\nPlot: " + results.Plot,
+        "\nStarring: " + results.Actors);
       console.log("\n------------------\n");
     }
   )
