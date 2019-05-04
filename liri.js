@@ -126,14 +126,13 @@ if (liriCmd === "do-what-it-says") {
   fs.readFile("random.txt", "utf8", function(error, data) {
 
     //console.log(data);
-
-    var dataArr = data.split(", ");
+    var dataArr = data.split(",");
 
     console.log(dataArr);
 
     dataArr[0] = liriCmd;
     dataArr[1] = userSearch;
-
+    console.log(userSearch);
 
   });
 }
