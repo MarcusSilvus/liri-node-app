@@ -61,6 +61,7 @@ if (liriCmd === "spotify-this-song") {
 
   //varible that gets the artists' name
   var artistName = function (artist) {
+    
     return artist.name;
   };
 
@@ -123,9 +124,16 @@ if (liriCmd === "movie-this") {
 
 if (liriCmd === "do-what-it-says") {
   fs.readFile("random.txt", "utf8", function(error, data) {
-    console.log(data);
 
-    // Then split it by commas (to make it more readable)
+    //console.log(data);
+
     var dataArr = data.split(", ");
+
+    console.log(dataArr);
+
+    dataArr[0] = liriCmd;
+    dataArr[1] = userSearch;
+
+
   });
 }
