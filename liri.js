@@ -130,9 +130,11 @@ if (liriCmd === "do-what-it-says") {
 
     console.log(dataArr);
 
-    dataArr[0] = liriCmd;
-    dataArr[1] = userSearch;
+    // dataArr[0] = liriCmd;
+    // dataArr[1] = userSearch;
     console.log(userSearch);
+    console.log(dataArr[0]);
+    
 
   });
 }
